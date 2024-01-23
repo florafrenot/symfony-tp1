@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Company index{% endblock %}
+
+{% block body %}
+    <h1>Liste des compagnies</h1>
+    <a class="btn btn-primary m-3"href="{{ path('app_company_new') }}" role="button">Ajouter</a>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Adresse</th>
+                <th>Code Postale</th>
+                <th>Ville</th>
+                <th>Téléphone</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for company in companies %}
+            <tr>
+                <td>{{ company.id }}</td>
+                <td>{{ company.companyName }}</td>
+                <td>{{ company.companyAdress }}</td>
+                <td>{{ company.companyZipCode }}</td>
+                <td>{{ company.companyCity }}</td>
+                <td>{{ company.companyPhone }}</td>
+                <td>
+                    <a class="btn btn-primary" href="{{ path('app_company_show', {'id': company.id}) }}" role="button">Voir</a>
+                    <a class="btn btn-secondary" href="{{ path('app_company_edit', {'id': company.id}) }}"role="button">Éditer</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
